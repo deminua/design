@@ -15,14 +15,12 @@ class PorfolioController extends Controller
 
 	
     public function multiple_file_upload($id, Request $request)
-    {
+    {   
     	if($request->images) {
 	    	foreach ($request->images as $file) {
-	    		 $filename = md5(time().rand(5, 15)).'.'.$file->getClientOriginalExtension();
+                 $filesize = $file->getSize();
+	    		 $filename = md5(time().$filesize).'.'.$file->getClientOriginalExtension();
 	    		 $destinationPath = 'uploads';
-	    		 $filesize = $file->getSize();
-
-	    		  #$upload_success = Storage::disk('uploads')->move($destinationPath, $filename);
 	    		 $upload_success = $file->move($destinationPath, $filename);
 	    		 if($upload_success) {
 	    		 	$file = new File;
