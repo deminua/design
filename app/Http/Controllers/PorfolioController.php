@@ -38,7 +38,7 @@ class PorfolioController extends Controller
 
     public function index()
     {   
-        $porfolios = Porfolio::with('avatar')->paginate(16);
+        $porfolios = Porfolio::with('avatar')->orderBy('created_at', 'desc')->paginate(16);
         return view('porfolio.index')->with('porfolios', $porfolios);
     }
 
