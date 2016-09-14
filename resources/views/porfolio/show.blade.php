@@ -25,11 +25,11 @@
 		<div class="col-md-6 col-lg-6 text-left" style="margin-bottom:30px">{!! nl2br($porfolio->description) !!}</div>
 		<div class="col-md-6 col-lg-6 text-right" style="margin-bottom:30px">
 			@if(!empty($back_next['back']->id))
-				<a href="{{ route('porfolio.show', $back_next['back']->id) }}" class="btn btn-success"><span class="glyphicon glyphicon-chevron-left"></span> Back</a>
+				<a href="{{ route('porfolio.show', $back_next['back']->id) }}" class="btn btn-success"><span class="glyphicon glyphicon-chevron-left"></span> {{ $back_next['back']->name }}</a>
 			@endif
 
 			@if(!empty($back_next['next']->id))
-				<a href="{{ route('porfolio.show', $back_next['next']->id) }}" class="btn btn-success">Next <span class="glyphicon glyphicon-chevron-right"></span></a>
+				<a href="{{ route('porfolio.show', $back_next['next']->id) }}" class="btn btn-success">{{ $back_next['next']->name }} <span class="glyphicon glyphicon-chevron-right"></span></a>
 			@endif
 		</div>
     </div>
