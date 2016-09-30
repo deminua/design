@@ -13,7 +13,8 @@
             <div class="text-center">
 						@foreach($porfolio->files as $file)
 						<div class="col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2" style="margin-bottom:30px">
-							<img class="img-responsive" src="/uploads/{{ $file->filename }}">
+							<img class="img-responsive" src="{{ route('imagecache', ['large', $file->filename]) }}">
+							
 						</div>
 						@endforeach
 			</div>
