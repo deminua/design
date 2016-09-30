@@ -44,7 +44,7 @@
                     @if (Auth::guest())
                     &nbsp;
                     @else
-                        <li><a href="{{ route('porfolio.create') }}">Porfolio create</a></li>
+                        <li><a href="{{ route('porfolio.create') }}">Portfolio create</a></li>
                                 <li>
                                     <a href="{{ url('/logout') }}"
                                         onclick="event.preventDefault();
@@ -63,7 +63,7 @@
                 <!-- Right Side Of Navbar -->
                 <ul class="nav navbar-nav navbar-right">
                 <li><a href="{{ route('page','about') }}">About us</a></li>
-                <li><a href="{{ route('porfolio.index') }}">Porfolio</a></li>
+                <li><a href="{{ route('porfolio.index') }}">Portfolio</a></li>
                 <li><a href="{{ url('http://krost.com.ua') }}">Krost.ltd</a></li>
                 <li><a href="{{ route('page','contacts') }}">Contacts</a></li>
                     <!-- Authentication Links 

@@ -74,7 +74,7 @@
                 </div>
                 <div class="links">
                     <a href="{{ route('page', 'about') }}">About us</a>
-                    <a href="{{ route('porfolio.index') }}">Porfolio</a>
+                    <a href="{{ route('porfolio.index') }}">Portfolio</a>
                     <a href="{{ url('http://krost.com.ua') }}">Krost.ltd</a>
                     <a href="{{ route('page', 'contacts') }}">Contacts</a>
                 </div>
