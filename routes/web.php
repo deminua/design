@@ -15,6 +15,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
+Route::group(['prefix' => 'api'], function () {
+		Route::get('contacts', 'ApiClientController@contacts')->name('api.client.contacts');
+		Route::get('contacts', 'ApiClientController@oauth2callback')->name('api.client.oauth2callback');
+});
+
+
 	Route::get('porfolio', [
 		'uses'=>'PorfolioController@index',
 		'as'=> 'porfolio.index',
@@ -55,6 +62,9 @@ Route::get('/assets/{img}/{w?}', function($image, $w=80){
 
  });
 */
+
+
+
 
 Auth::routes();
 
