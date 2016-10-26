@@ -114,9 +114,8 @@ public function oauth2callback(Request $request)
         $this->token = $token->getaccessToken();
         $this->token_expires = $token->getendOfLife();
 
-        session()->put('access_token', $this->token);
-        session()->put('access_token_expires', $this->token_expires);
-        session()->save();
+        session()->put('access_token', $this->token)->save();
+        session()->put('access_token_expires', $this->token_expires)->save();
 
         return redirect('/');
 
