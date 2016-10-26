@@ -21,8 +21,8 @@ class ApiClientController extends Controller
 		$this->client_secret = env('google_api_client_secret');
 		$this->redirect_uri = env('google_api_redirect_uris');
         $this->javascript_origins = env('google_api_javascript_origins');
-        $this->token = session()->get('access_token');
-        $this->token_expires = session()->get('access_token_expires');
+        $this->token = '';
+        $this->token_expires = '';
 
 		$this->url = '';
 
@@ -77,7 +77,7 @@ class ApiClientController extends Controller
     public function contacts()
     {
 
-        if(!isset($this->token) && $this->token_expires < time()) {
+        if(!isset(session()->get('access_token')) && session()->get('access_token_expires') < time()) {
             return $this->oauth2();
         }
 
@@ -86,7 +86,7 @@ class ApiClientController extends Controller
 		$action = [
 		'max-results'=>'10',
 		'alt'=>'json',
-		'access_token' => $this->token,
+		'access_token' => session()->get('access_token'),
 		];
 
 		$response = $this->sendData($action);
@@ -118,8 +118,8 @@ public function oauth2callback(Request $request)
         $token = $googleService->requestAccessToken($code);
 
 
-        $this->token = session()->put('access_token', $access_token)->save();
-        $this->token_expires = session()->put('access_token_expires', $token_expires)->save();
+        $this->token = session()->put('access_token', $token->access_token)->save();
+        $this->token_expires = session()->put('access_token_expires', $token->token_expires)->save();
 
         #$this->setToken($token->accessToken, $token->endOfLife);
         return dd($token);
