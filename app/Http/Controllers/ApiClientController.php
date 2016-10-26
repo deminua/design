@@ -34,7 +34,7 @@ public function oauth2callback(Request $request)
     {   
 
        $oauthData = [
-            'grant_type': 'authorization_code',
+            'grant_type'=> 'authorization_code',
             'code' => $request->code,
             'client_id' => $this->client_id,
             'client_secret' => $this->client_secret,
