@@ -183,6 +183,8 @@ return [
 
         Barryvdh\Debugbar\ServiceProvider::class,
 
+        Artdarek\OAuth\OAuthServiceProvider::class,
+
     ],
 
     /*
@@ -236,6 +238,8 @@ return [
           'Html' => Collective\Html\HtmlFacade::class,
 
           'Debugbar' => Barryvdh\Debugbar\Facade::class,
+
+         'OAuth'     => Artdarek\OAuth\Facade\OAuth::class,
 
     ],
 

@@ -12,7 +12,8 @@
         "barryvdh/laravel-debugbar": "^2.2",
         "intervention/imagecache": "^2.3",
         "nesbot/carbon": "^1.21",
-        "guzzlehttp/guzzle": "^6.2"
+        "guzzlehttp/guzzle": "^6.2",
+        "oriceon/oauth-5-laravel": "dev-master"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
