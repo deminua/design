@@ -61,7 +61,7 @@ public function oauth2callback2(Request $request)
     public function oauth2()
     {
         $action = [
-        'client_id'=>$this->clietn_id,
+        'client_id'=>$this->client_id,
         'scope'=>'https://www.google.com/m8/feeds/',
         'response_type' => 'code',
         'redirect_uri' => $this->redirect_uri,
