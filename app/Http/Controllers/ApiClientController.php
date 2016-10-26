@@ -112,7 +112,11 @@ public function oauth2callback(Request $request)
         // This was a callback request from google, get the token
         $token = $googleService->requestAccessToken($code);
 
-        $this->setToken($token->accessToken, $token->endOfLife);
+
+        $this->token = session()->put('access_token', $access_token)->save();
+        $this->token_expires = session()->put('access_token_expires', $token_expires)->save();
+
+        #$this->setToken($token->accessToken, $token->endOfLife);
         return redirect('/');
         // Send a request with it
         // $result = json_decode($googleService->request('https://www.googleapis.com/oauth2/v1/userinfo'), true);
