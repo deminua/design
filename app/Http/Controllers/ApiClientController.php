@@ -77,7 +77,7 @@ class ApiClientController extends Controller
     public function contacts()
     {
 
-        if(!isset(session()->get('access_token')) && session()->get('access_token_expires') < time()) {
+        if(session()->get('access_token') == '' && session()->get('access_token_expires') <= time()) {
             return $this->oauth2();
         }
 
