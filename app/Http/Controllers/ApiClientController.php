@@ -35,11 +35,7 @@ class ApiClientController extends Controller
     public function getToken()
     {   
 
-        if(isset($this->token) && $this->token_expires > time()) {
-            return $this->token;
-        }
 
-        return $this->oauth2();
     }
 
     //Записываем токен
@@ -81,13 +77,16 @@ class ApiClientController extends Controller
     public function contacts()
     {
 
-        $access_token = $this->getToken();
+        if(!isset($this->token) && $this->token_expires < time()) {
+            return $this->oauth2();
+        }
+
         $this->url = 'https://www.google.com/m8/feeds/contacts/default/full';
 
 		$action = [
 		'max-results'=>'10',
 		'alt'=>'json',
-		'access_token' => $access_token,
+		'access_token' => $this->token,
 		];
 
 		$response = $this->sendData($action);
