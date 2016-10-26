@@ -90,8 +90,8 @@ class ApiClientController extends Controller
 		];
 
 		$response = $this->sendData($action);
-
-		return json_decode($response);
+        $data = json_decode($response);
+		return $data;
 
 
     }
