@@ -18,7 +18,7 @@ Route::get('/', function () {
 
 Route::group(['prefix' => 'api'], function () {
 		Route::get('contacts', 'ApiClientController@contacts')->name('api.client.contacts');
-		Route::get('contacts', 'ApiClientController@oauth2callback')->name('api.client.oauth2callback');
+		Route::get('oauth2callback', 'ApiClientController@oauth2callback')->name('api.client.oauth2callback');
 });
 
 
