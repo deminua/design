@@ -34,11 +34,11 @@ public function oauth2callback(Request $request)
     {   
 
        $oauthData = [
+            'grant_type': 'authorization_code',
             'code' => $request->code,
             'client_id' => $this->client_id,
             'client_secret' => $this->client_secret,
             'redirect_uri' => $this->redirect_uri,
-            'grant_type' => 'authorization_code',
         ];
 
         $this->url = $this->token_uri;
