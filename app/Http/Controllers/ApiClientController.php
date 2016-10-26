@@ -39,6 +39,7 @@ public function oauth2callback(Request $request)
             'client_secret' => $this->client_secret,
             'redirect_uri' => $this->redirect_uri,
             'grant_type' => 'authorization_code',
+            'v' => '3.0',
         ];
 
         $this->url = $this->token_uri;
@@ -65,6 +66,7 @@ public function oauth2callback(Request $request)
         'scope'=>'https://www.google.com/m8/feeds/',
         'response_type' => 'code',
         'redirect_uri' => $this->redirect_uri,
+        'v' => '3.0',
         ];
 
         $this->url = $this->auth_uri;
