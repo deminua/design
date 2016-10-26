@@ -99,7 +99,7 @@ public function oauth2callback2(Request $request)
         return $response;
     }
 
-    public function contacts2()
+    public function contacts()
     {
 
         return $this->getToken();
