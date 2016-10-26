@@ -112,17 +112,24 @@ public function oauth2callback(Request $request)
     // check if code is valid
 
     // if code is provided get user data and sign in
-    if ( ! is_null($code))
+    if (!is_null($code))
     {
         // This was a callback request from google, get the token
+
         $token = $googleService->requestAccessToken($code);
 
 
-        $this->token = session()->put('access_token', $token->access_token)->save();
-        $this->token_expires = session()->put('access_token_expires', $token->token_expires)->save();
+        $this->token = $token->access_token;
+        $this->token_expires = $token->token_expires;
+
+        session()->put('access_token', $token->access_token);
+        session()->put('access_token_expires', $token->token_expires);
+        session()->save();
 
         #$this->setToken($token->accessToken, $token->endOfLife);
-        return dd($token);
+        
+        return $token;
+
         // Send a request with it
         // $result = json_decode($googleService->request('https://www.googleapis.com/oauth2/v1/userinfo'), true);
 
