@@ -95,7 +95,7 @@ public function oauth2callback(Request $request)
             ],
         ]);
 
-        $response = $client->post($this->url.'?'.http_build_query($action))->getBody()->getContents();
+        $response = $client->post($this->url.'?'.urldecode(http_build_query($action)))->getBody()->getContents();
         return $response;
     }
 
