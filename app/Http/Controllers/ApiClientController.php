@@ -44,7 +44,7 @@ public function oauth2callback(Request $request)
 
         $this->url = $this->token_uri;
 
-        return dd($this->sendData($oauthData));
+        return dd($this->sendDataPost($oauthData));
     }
 
 
@@ -85,6 +85,19 @@ public function oauth2callback(Request $request)
 
 		$response = $client->get($this->url.'?'.http_build_query($action))->getBody()->getContents();
 		return $response;
+    }
+
+    public function sendDataPost($action)
+    {
+        $client = new Client([
+            'curl' => [
+                CURLOPT_SSL_VERIFYHOST => 0,
+                CURLOPT_SSL_VERIFYPEER => 0,
+            ],
+        ]);
+
+        $response = $client->get($this->url.'?'.http_build_query($action))->getBody()->getContents();
+        return $response;
     }
 
     public function contacts()
