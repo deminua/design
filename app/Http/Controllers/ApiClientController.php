@@ -118,7 +118,7 @@ public function oauth2callback(Request $request)
         session()->put('access_token_expires', $this->token_expires);
         session()->save();
 
-        return redirect '/';
+        return redirect('/');
 
     }
     // if not ask for permission first
