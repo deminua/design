@@ -96,6 +96,11 @@ class ApiClientController extends Controller
 
     }
 
+public function sessions()
+{
+    return dd(session()->all());
+}
+
 public function oauth2callback(Request $request)
 {
     // get data from request
@@ -117,7 +122,7 @@ public function oauth2callback(Request $request)
         $this->token_expires = session()->put('access_token_expires', $token_expires)->save();
 
         #$this->setToken($token->accessToken, $token->endOfLife);
-        return redirect('/');
+        return dd($token);
         // Send a request with it
         // $result = json_decode($googleService->request('https://www.googleapis.com/oauth2/v1/userinfo'), true);
 
