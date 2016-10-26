@@ -29,22 +29,6 @@ class ApiClientController extends Controller
     }
 
 
-//Callback Code
-public function oauth2callback2(Request $request)
-    {   
-
-       $oauthData = [
-            'grant_type'=> 'authorization_code',
-            'code' => $request->code,
-            'client_id' => $this->client_id,
-            'client_secret' => $this->client_secret,
-            'redirect_uri' => $this->redirect_uri,
-        ];
-
-        $this->url = $this->token_uri;
-
-        return dd($this->sendDataPost($oauthData));
-    }
 
 
     //Получаем токен
@@ -56,6 +40,13 @@ public function oauth2callback2(Request $request)
         }
 
         return $this->oauth2();
+    }
+
+    //Записываем токен
+    public function setToken($access_token, $token_expires)
+    {   
+        $this->token = session()->put('access_token', $access_token)->save();
+        $this->token_expires = session()->put('access_token_expires', $token_expires)->save();
     }
 
     public function oauth2()
@@ -86,40 +77,22 @@ public function oauth2callback2(Request $request)
 		return $response;
     }
 
-    public function sendDataPost($action)
-    {
-        $client = new Client([
-            'curl' => [
-                CURLOPT_SSL_VERIFYHOST => 0,
-                CURLOPT_SSL_VERIFYPEER => 0,
-            ],
-        ]);
-
-        $response = $client->post($this->url.'?'.urldecode(http_build_query($action)))->getBody()->getContents();
-        return $response;
-    }
 
     public function contacts()
     {
 
-        return $this->getToken();
-        #session()->put('code', '123');
-        #session()->save();
-
-    	#return dd(session()->all());
+        $access_token = $this->getToken();
+        $this->url = 'https://www.google.com/m8/feeds/contacts/default/full';
 
 		$action = [
-		'client_id'=>$this->client_id,
-		'scope'=>'https://www.google.com/m8/feeds/',
-		'response_type' => 'code',
-        'redirect_uri' => $this->redirect_uri,
+		'max-results'=>'10',
+		'alt'=>'json',
+		'access_token' => $access_token,
 		];
 
 		$response = $this->sendData($action);
 
-		#return json_decode($response);
-
-		return $response;
+		return json_decode($response);
 
 
     }
@@ -139,7 +112,9 @@ public function oauth2callback(Request $request)
     {
         // This was a callback request from google, get the token
         $token = $googleService->requestAccessToken($code);
-        return dd($token);
+
+        $this->setToken($token->accessToken, $token->endOfLife);
+        return redirect('/');
         // Send a request with it
         // $result = json_decode($googleService->request('https://www.googleapis.com/oauth2/v1/userinfo'), true);
 
