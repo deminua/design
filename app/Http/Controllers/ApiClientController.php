@@ -118,7 +118,7 @@ public function oauth2callback(Request $request)
 
         $token = $googleService->requestAccessToken($code);
 
-        return $token;
+        return var_dump($token);
         
         $this->token = $token->access_token;
         $this->token_expires = $token->token_expires;
