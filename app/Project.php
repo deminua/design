@@ -58,31 +58,28 @@ class Project extends Model
         'finish_at'
     ];
 
-    public function warning_sign()
+    public function days()
     {   
-
-        if(empty($this->finish_at)) {
             $term = Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $this->term_at);
             $term = Carbon\Carbon::parse($term);
             $start = Carbon\Carbon::now();
+            return $start->diffInDays($term, false);
+    }
 
-            if($start <= $term->addDay(2)) { return ''; }
-            if($start <= $term->addDay(5)) { return ''; }
-            if($start > $term) { return 'glyphicon glyphicon-warning-sign'; }
+    public function warning_sign()
+    {   
+        if(empty($this->finish_at)) {
+            if($this->days() < 0) { return 'glyphicon glyphicon-warning-sign'; }
         }
-
     }
 
     public function warning()
     {       
         if(empty($this->finish_at)) {
-            $term = Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $this->term_at);
-            $term = Carbon\Carbon::parse($term);
-            $start = Carbon\Carbon::now();
-
-            if($start <= $term->addDay(2)) { return 'danger'; }
-            if($start <= $term->addDay(5)) { return 'warning'; }
-            if($start > $term) { return 'danger text-danger'; }
+                $days = $this->days();
+                if($days <= 0) { return 'danger text-danger'; }
+                if($days <= '2') { return 'danger'; }
+                if($days < '5') { return 'warning'; }
         }
     }
 

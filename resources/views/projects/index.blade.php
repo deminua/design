@@ -24,6 +24,7 @@
 						<th>Изменен</th>
 						<th>Срок</th>
 						<th>Сдано</th>
+						<th>Дней</th>
 					  </tr>
 				</thead>
 				<tbody>
@@ -44,7 +45,8 @@
 				        <td>@if($p->edit_at){{ \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $p->edit_at)->format('d.m.Y') }}@endif</td>
 				        <td>@if($p->term_at){{ \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $p->term_at)->format('d.m.Y') }}@endif</td>
 				        <td>@if($p->finish_at){{ \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $p->finish_at)->format('d.m.Y') }}@endif</td>
-				  </tr>					
+				        <td>@if($p->days()){{ $p->days() }}@endif</td>
+				        </tr>					
 				@endforeach
 				</tbody>
 				</table>
