@@ -28,12 +28,12 @@
 				</thead>
 				<tbody>
 				@foreach($projects as $p)
-				  <tr>
+				  <tr class="{{ $p->warning() }}">
 				        <td><a href="{{ route('project', ['id'=>$p->id]) }}">{{ $p->id }}</a></td>
-				        <td>{{ $p->code }}</td>
+				        <td><span class="{{ $p->warning_sign() }}"></span> {{ $p->code }}</td>
 				        <td>{{ $p->name }}<br><small>{{ $p->path }}</small></td>
-				        <td><a href="#" class="glyphicon glyphicon-home" data-toggle="tooltip" data-placement="top" title="{{ $p->address }}, {{ $p->district }}, {{ $p->city }}, {{ $p->phone }}"></a> 
-				        <a href="#" class="glyphicon glyphicon-info-sign" data-toggle="tooltip" data-placement="top" title="{{ $p->description }}"></a></td>
+				        <td><a style="text-decoration: none" href="#" class="glyphicon glyphicon-home" data-toggle="tooltip" data-placement="top" title="{{ $p->address }}, {{ $p->district }}, {{ $p->city }}, {{ $p->phone }}"></a> 
+				        <a style="text-decoration: none" href="#" class="glyphicon glyphicon-info-sign" data-toggle="tooltip" data-placement="top" title="{{ $p->description }}"></a></td>
 				        <td>
 				        @if($p->customer)Заказчик: <a href="{{ route('index_people', ['id'=>$p->customer['id']]) }}" data-toggle="tooltip" data-placement="top" title="{{ $p->customer['phone'] }} ({{ $p->customer['city'] }})">{{ $p->customer['name'] }} {{ $p->customer['surname'] }} {{ $p->customer['patronymic'] }}</a><br>@endif
 				        @if($p->director)Директор: <a href="{{ route('index_people', ['id'=>$p->director['id']]) }}" data-toggle="tooltip" data-placement="top" title="{{ $p->director['phone'] }} ({{ $p->director['city'] }})">{{ $p->director['name'] }} {{ $p->director['surname'] }} {{ $p->director['patronymic'] }}</a><br>@endif
@@ -48,6 +48,8 @@
 				@endforeach
 				</tbody>
 				</table>
+
+<center>{{ $projects->links() }}</center>
 
         </div>
     </div>

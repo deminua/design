@@ -74,6 +74,6 @@ class ProjectController extends Controller
 
     public function index()
     {
-        return view('projects.index')->with('projects', Project::with('customer', 'director', 'curator', 'designer')->paginate(15));
+        return view('projects.index')->with('projects', Project::with('customer', 'director', 'curator', 'designer')->orderBy('id', 'desc')->paginate(15));
     }
 }
