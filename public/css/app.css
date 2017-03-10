@@ -7688,4 +7688,49 @@ button.close {
   }
 }
 
+footer {
+  min-height: 64px;
+}
+
+.portfolio-col {
+  margin-bottom: 30px;
+}
+
+.portfolio-clearfix {
+  display: block;
+  height: 10px;
+}
+
+.portfolio-name {
+  position: absolute;
+  bottom: 20px;
+  color: #fff;
+  text-align: center;
+  width: 100%;
+  left: 0px;
+}
+
+.portfolio-name:hover a {
+  text-decoration: none;
+}
+
+.portfolio-name date {
+  background-color: none;
+  color: #000;
+  padding: 5px;
+}
+
+.portfolio-name strong {
+  background-color: none;
+  color: #000;
+  padding: 5px;
+}
+
+.admin_menu {
+  position: absolute;
+  top: 30px;
+  left: 30px;
+  z-index: 9999;
+}
+
 /*# sourceMappingURL=app.css.map */
