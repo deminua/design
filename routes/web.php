@@ -94,4 +94,12 @@ Auth::routes();
 		'as'=> 'file.update',
 		]);
 
-Route::get('/home', 'HomeController@index');
+
+
+Route::get('/home', 'ProjectController@index')->name('home');
+
+Route::get('/project/{id?}', 'ProjectController@project')->name('project');
+Route::post('/project/update', 'ProjectController@update_project')->name('update_project');
+
+Route::get('/peoples/{id?}', 'ProjectController@index_people')->name('index_people');
+Route::post('/people/update', 'ProjectController@update_people')->name('update_people');

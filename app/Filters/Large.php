@@ -11,7 +11,7 @@ class Large implements FilterInterface
     {
         #return $image->resize(1600, null)->insert('images/watermark.png');
 
-        $image->widen(1400, function ($constraint) {
+        $image->widen(1800, function ($constraint) {
     			$constraint->upsize();
 		});
 
